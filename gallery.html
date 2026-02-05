@@ -10,8 +10,8 @@
     background: linear-gradient(180deg, #ffe6ec, #ffd1dc);
     font-family: 'Segoe UI', sans-serif;
     text-align: center;
-    overflow: hidden;
     color: #7a2e3a;
+    overflow-y: auto; /* ✅ BISA SCROLL */
   }
 
   h1 {
@@ -20,37 +20,34 @@
     font-size: 42px;
   }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px 40px 60px;
-}
-
-.gallery img {
-  width: 100%;
-  height: 260px;       
-  object-fit: cover;  
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-@media (max-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px 40px 40px;
   }
 
   .gallery img {
-    height: 200px;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
   }
-}
 
   .gallery img:hover {
-  transform: scale(1.03);
-  transition: 0.3s ease;
-}
+    transform: scale(1.03);
+  }
 
-
+  @media (max-width: 768px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery img {
+      height: 200px;
+    }
+  }
 
   button {
     margin: 20px;
@@ -64,11 +61,29 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
 
+  /* PESAN DI BAWAH TOMBOL */
+  .message {
+    max-width: 600px;
+    margin: 30px auto 100px;
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+
+  /* AREA STIKER */
+  #sticker-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
   .sticker {
     position: absolute;
     font-size: 30px;
     animation: pop 4s linear forwards;
-    pointer-events: none;
   }
 
   @keyframes pop {
@@ -97,6 +112,18 @@
 
 <button onclick="spam()">Jeger Jeger Duer</button>
 
+<div class="message">
+  <p>
+    Happy birthday sayangggggggggg 💕  
+    awiwwiwiwiwwwiwiii
+  </p>
+  <p>
+    Terima kasih udah jadi kamuuu 🌸
+  </p>
+</div>
+
+<div id="sticker-area"></div>
+
 <script>
 function spam() {
   const stickers = ["🎂", "❤️", "💖", "🍰"];
@@ -107,7 +134,8 @@ function spam() {
     s.style.left = Math.random() * 100 + "vw";
     s.style.top = Math.random() * 100 + "vh";
     s.style.fontSize = (Math.random() * 25 + 20) + "px";
-    document.body.appendChild(s);
+
+    document.getElementById("sticker-area").appendChild(s);
 
     setTimeout(() => s.remove(), 4000);
   }
