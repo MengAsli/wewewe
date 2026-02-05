@@ -20,18 +20,37 @@
     font-size: 42px;
   }
 
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px 40px 60px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 260px;       
+  object-fit: cover;  
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
   .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    padding: 20px 40px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .gallery img {
-    width: 100%;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    height: 200px;
   }
+}
+
+  .gallery img:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease;
+}
+
+
 
   button {
     margin: 20px;
